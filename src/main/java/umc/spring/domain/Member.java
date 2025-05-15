@@ -66,13 +66,14 @@ public class Member extends BaseEntity {
     private List<MemberMission> memberMissionList = new ArrayList<>();
 
     @Builder
-    public Member(String name, String address, String specAddress, Gender gender, SocialType socialType, MemberStatus status, LocalDate inactiveDate, String email, Integer point) {
+    public Member(String name, String address, String specAddress, Gender gender, SocialType socialType, MemberStatus status, List<MemberPrefer> memberPreferList, LocalDate inactiveDate, String email, Integer point) {
         this.name = name;
         this.address = address;
         this.specAddress = specAddress;
         this.gender = gender;
         this.socialType = socialType;
         this.status = status;
+        this.memberPreferList = memberPreferList;
         this.inactiveDate = inactiveDate;
         this.email = email;
         this.point = point;

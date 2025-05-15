@@ -1,9 +1,7 @@
 package umc.spring.domain.mapping;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import umc.spring.domain.FoodCategory;
 import umc.spring.domain.Member;
 import umc.spring.global.BaseEntity;
@@ -19,9 +17,16 @@ public class MemberPrefer extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
+    @Setter
     private Member member;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
     private FoodCategory foodCategory;
+
+    @Builder
+    public MemberPrefer(Member member, FoodCategory foodCategory) {
+        this.member = member;
+        this.foodCategory = foodCategory;
+    }
 }

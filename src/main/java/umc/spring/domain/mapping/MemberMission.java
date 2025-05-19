@@ -1,9 +1,7 @@
 package umc.spring.domain.mapping;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import umc.spring.domain.Member;
 import umc.spring.domain.Mission;
 import umc.spring.domain.enums.MissionStatus;
@@ -19,6 +17,7 @@ public class MemberMission extends BaseEntity {
     private Long id;
 
     @Enumerated(EnumType.STRING)
+    @Setter
     private MissionStatus status;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -28,4 +27,10 @@ public class MemberMission extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "mission_id")
     private Mission mission;
+
+    @Builder
+    public MemberMission(Member member, Mission mission) {
+        this.member = member;
+        this.mission = mission;
+    }
 }

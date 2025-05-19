@@ -1,9 +1,7 @@
 package umc.spring.domain;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import umc.spring.global.BaseEntity;
 
 import java.util.ArrayList;
@@ -20,6 +18,7 @@ public class Store extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "region_id")
+    @Setter
     private Region region;
 
     @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
@@ -43,5 +42,12 @@ public class Store extends BaseEntity {
                 ", score=" + score +
                 ", region=" + (region != null ? region.getName() : "N/A") + // region의 이름 출력
                 '}';
+    }
+
+    @Builder
+    public Store(String name, String address, Region region) {
+        this.name = name;
+        this.address = address;
+        this.region = region;
     }
 }

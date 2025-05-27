@@ -24,7 +24,6 @@ public class StoreQueryServiceImpl implements StoreQueryService {
 
     private final StoreRepository storeRepository;
     private final ReviewRepository reviewRepository;
-    private final MemberRepository memberRepository;
     private final MissionRepository missionRepository;
 
     @Override
@@ -47,14 +46,6 @@ public class StoreQueryServiceImpl implements StoreQueryService {
 
         Page<Review> StorePage = reviewRepository.findAllByStore(store, PageRequest.of(page, 10));
         return StorePage;
-    }
-
-    @Override
-    public Page<Review> getMemberReviewList(Long MemberId, Integer page) {
-        Member member = memberRepository.findById(MemberId)
-                .orElseThrow(() -> new RuntimeException("Member not found"));
-
-        return reviewRepository.findAllByMember(member, PageRequest.of(page, 10));
     }
 
     @Override

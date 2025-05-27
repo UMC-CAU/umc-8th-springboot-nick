@@ -1,6 +1,8 @@
 package umc.spring.service.memberService;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import umc.spring.apiPayload.code.status.ErrorStatus;
@@ -12,13 +14,11 @@ import umc.spring.converter.MemberPreferConverter;
 import umc.spring.domain.FoodCategory;
 import umc.spring.domain.Member;
 import umc.spring.domain.Mission;
+import umc.spring.domain.Review;
 import umc.spring.domain.enums.MissionStatus;
 import umc.spring.domain.mapping.MemberMission;
 import umc.spring.domain.mapping.MemberPrefer;
-import umc.spring.repository.FoodCategoryRepository;
-import umc.spring.repository.MemberMissionRepository;
-import umc.spring.repository.MemberRepository;
-import umc.spring.repository.MissionRepository;
+import umc.spring.repository.*;
 import umc.spring.web.dto.member.MemberRequestDTO;
 
 import java.util.List;
@@ -32,6 +32,7 @@ public class MemberCommandServiceImpl implements MemberCommandService {
     private final MissionRepository missionRepository;
     private final MemberMissionRepository memberMissionRepository;
     private final FoodCategoryRepository foodCategoryRepository;
+    private final ReviewRepository reviewRepository;
 
     @Override
     @Transactional
